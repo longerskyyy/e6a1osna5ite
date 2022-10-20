@@ -16,7 +16,9 @@ local Config = {
     NamesOutlineColor = Color3.fromRGB(0,0,0),
     -- Names Text
     NamesFont         = 2, -- 0,1,2,3
-    NamesSize         = 13
+    NamesSize         = 13,
+    -- Other
+    TeamCheck         = false
 }
 
 function CreateEsp(Player)
@@ -96,6 +98,13 @@ function CreateEsp(Player)
                 HealthBar.Visible = false
                 HealthBarOutline.Visible = false
             end
+            if Config.TeamCheck and Player.TeamColor == game:GetService("Players").LocalPlayer.TeamColor then
+                Box.Visible = false
+                BoxOutline.Visible = false
+                Name.Visible = false
+                HealthBar.Visible = false
+                HealthBarOutline.Visible = false
+            end      
         else
             Box.Visible = false
             BoxOutline.Visible = false
