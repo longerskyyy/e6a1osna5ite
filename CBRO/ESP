@@ -98,7 +98,8 @@ function CreateEsp(Player)
                 HealthBar.Visible = false
                 HealthBarOutline.Visible = false
             end
-            if Config.TeamCheck and Player.TeamColor == game:GetService("Players").LocalPlayer.TeamColor then
+            if Config.TeamCheck and 
+            Player.Team == game:GetService("Players").LocalPlayer.Team then
                 Box.Visible = false
                 BoxOutline.Visible = false
                 Name.Visible = false
