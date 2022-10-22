@@ -23,7 +23,10 @@ local Config = {
     NamesSize         = 13,
     -- Other
     TeamCheck         = false,
-    TeamColor         = false,
+    -- TeamColor
+    TeamColorBox      = false,
+    TeamColorTracer   = false,
+    TeamColorNames    = false
 }
 
 function CreateEsp(Player)
@@ -126,11 +129,23 @@ function CreateEsp(Player)
                 HealthBarOutline.Visible = false
                 Tracer.Visible = false
             end
-            if Config.TeamColor then
+            if Config.TeamColorBox then
                 local Color = Player.TeamColor.Color
 				Box.Color = Color3.new(Color.R,Color.G,Color.B)
             else
                 Box.Color = Config.BoxColor
+            end
+            if Config.TeamColorTracer then
+                local Color = Player.TeamColor.Color
+				Tracer.Color = Color3.new(Color.R,Color.G,Color.B)
+            else
+                Tracer.Color = Config.BoxColor
+            end
+            if Config.TeamColorNames then
+                local Color = Player.TeamColor.Color
+				Names.Color = Color3.new(Color.R,Color.G,Color.B)
+            else
+                Names.Color = Config.BoxColor
             end
         else
             Box.Visible = false
