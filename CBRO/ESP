@@ -5,6 +5,10 @@ local Config = {
     -- Boxes Outlines
     BoxOutline        = false,
     BoxOutlineColor   = Color3.fromRGB(0,0,0),
+    --Tracers
+    Tracer            = false,
+    TracerColor       = Color3.fromRGB(255,255,255),
+    TracerMode        = "Default", -- Default, Crosshair
     -- Health Bar
     HealthBar         = false,
     HealthBarSide     = "Left", -- Left,Bottom,Right
@@ -17,16 +21,13 @@ local Config = {
     -- Names Text
     NamesFont         = 2, -- 0,1,2,3
     NamesSize         = 13,
-    
-    --Distance        = false, -DISABLED (MORE PROBLEMS!!!)
-    
     -- Other
     TeamCheck         = false,
-    TeamColor         = false
+    TeamColor         = false,
 }
 
 function CreateEsp(Player)
-    local Box,BoxOutline,Name,HealthBar,HealthBarOutline = Drawing.new("Square"),Drawing.new("Square"),Drawing.new("Text"),Drawing.new("Square"),Drawing.new("Square")
+    local Box,BoxOutline,Name,HealthBar,HealthBarOutline,Tracer = Drawing.new("Square"),Drawing.new("Square"),Drawing.new("Text"),Drawing.new("Square"),Drawing.new("Square"),Drawing.new("Line")
     local Updater = game:GetService("RunService").RenderStepped:Connect(function()
     if Player.Character ~= nil and Player.Character:FindFirstChild("Humanoid") ~= nil and Player.Character:FindFirstChild("HumanoidRootPart") ~= nil and Player.Character.Humanoid.Health > 0 and Player.Character:FindFirstChild("Head") ~= nil then
             local Target2dPosition,IsVisible = workspace.CurrentCamera:WorldToViewportPoint(Player.Character.HumanoidRootPart.Position)
@@ -67,6 +68,20 @@ function CreateEsp(Player)
                 Name.Size = Config.NamesSize   
             else
                 Name.Visible = false
+            end
+            if Config.Tracer then
+                Tracer.Visible = IsVisible
+                Tracer.Color = Config.TracerColor
+                Tracer.Thickness = 1
+                Tracer.Transparency = 1
+                Tracer.To = Vector2.new(Target2dPosition.X, Target2dPosition.Y)
+                if Config.TracerMode == "Default" then
+                    Tracer.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y / 1)
+                elseif Config.TracerMode == "Crosshair" then
+                    Tracer.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y / 2)
+                end
+            else
+                Tracer.Visible = false
             end
             if Config.HealthBar then
                 HealthBarOutline.Visible = IsVisible
@@ -109,6 +124,7 @@ function CreateEsp(Player)
                 Name.Visible = false
                 HealthBar.Visible = false
                 HealthBarOutline.Visible = false
+                Tracer.Visible = false
             end
             if Config.TeamColor then
                 local Color = Player.TeamColor.Color
@@ -122,12 +138,14 @@ function CreateEsp(Player)
             Name.Visible = false
             HealthBar.Visible = false
             HealthBarOutline.Visible = false
+            Tracer.Visible = false
             if not Player then
                 Box:Remove()
                 BoxOutline:Remove()
                 Name:Remove()
                 HealthBar:Remove()
                 HealthBarOutline:Remove()
+                Tracer:Remove()
                 Updater:Disconnect()
             end
         end
