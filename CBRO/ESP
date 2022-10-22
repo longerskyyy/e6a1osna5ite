@@ -141,12 +141,6 @@ function CreateEsp(Player)
             else
                 Tracer.Color = Config.TracerColor
             end
-            if Config.TeamColorNames then
-                local Color = Player.TeamColor.Color
-				Name.Color = Color3.new(Color.R,Color.G,Color.B)
-            else
-                Name.Color = Config.NamesColor
-            end
         else
             Box.Visible = false
             BoxOutline.Visible = false
