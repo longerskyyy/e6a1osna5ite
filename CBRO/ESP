@@ -17,6 +17,8 @@ local Config = {
     -- Names Text
     NamesFont         = 2, -- 0,1,2,3
     NamesSize         = 13,
+    -- Distance (beta feature)
+    Distance          = false,
     -- Other
     TeamCheck         = false,
     TeamColor         = false
@@ -55,13 +57,15 @@ function CreateEsp(Player)
             if Config.Names then
                 Name.Visible = IsVisible
                 Name.Color = Config.NamesColor
-                Name.Text = Player.Name.." ["..math.floor((workspace.CurrentCamera.CFrame.p - Player.Character.HumanoidRootPart.Position).magnitude).."]"
+                Name.Text = Player.Name
                 Name.Center = true
                 Name.Outline = Config.NamesOutline
                 Name.OutlineColor = Config.NamesOutlineColor
                 Name.Position = Vector2.new(Target2dPosition.X,Target2dPosition.Y - height * 0.5 + -15)
                 Name.Font = Config.NamesFont
                 Name.Size = Config.NamesSize
+            elseif Config.Distance then
+                Name.Text = Player.Name.." ["..math.floor((workspace.CurrentCamera.CFrame.p - Player.Character.HumanoidRootPart.Position).magnitude).."]"
             else
                 Name.Visible = false
             end
@@ -109,7 +113,7 @@ function CreateEsp(Player)
             end
             if Config.TeamColor then
                 local Color = Player.TeamColor.Color
-				Box.Color = Color3.new(Color.R,Color.G,Color.B)
+		Box.Color = Color3.new(Color.R,Color.G,Color.B)
             else
                 Box.Color = Config.BoxColor
             end
