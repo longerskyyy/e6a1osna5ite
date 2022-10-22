@@ -23,7 +23,7 @@ local Config = {
     NamesSize         = 13,
     -- Other
     TeamCheck         = false,
-    -- TeamColor
+    -- Other-TeamColor
     TeamColorBox      = false,
     TeamColorTracer   = false,
     TeamColorNames    = false
@@ -139,13 +139,13 @@ function CreateEsp(Player)
                 local Color = Player.TeamColor.Color
 				Tracer.Color = Color3.new(Color.R,Color.G,Color.B)
             else
-                Tracer.Color = Config.BoxColor
+                Tracer.Color = Config.TracerColor
             end
             if Config.TeamColorNames then
                 local Color = Player.TeamColor.Color
 				Names.Color = Color3.new(Color.R,Color.G,Color.B)
             else
-                Names.Color = Config.BoxColor
+                Names.Color = Config.NamesColor
             end
         else
             Box.Visible = false
