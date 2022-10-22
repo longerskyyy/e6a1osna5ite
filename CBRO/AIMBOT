@@ -5,7 +5,7 @@ local dwEntities = game:GetService("Players")
 local dwLocalPlayer = dwEntities.LocalPlayer
 local dwMouse = dwLocalPlayer:GetMouse()
 
-local settings = {
+local Config = {
     Aimbot = false,
     Aiming = false,
     Aimbot_AimPart = "Head",
@@ -27,13 +27,13 @@ fovcircle.Position = Vector2.new(dwCamera.ViewportSize.X / 2, dwCamera.ViewportS
 
 dwUIS.InputBegan:Connect(function(i)
     if i.UserInputType == Enum.UserInputType.MouseButton2 then
-        settings.Aiming = true
+        Config.Aiming = true
     end
 end)
 
 dwUIS.InputEnded:Connect(function(i)
     if i.UserInputType == Enum.UserInputType.MouseButton2 then
-        settings.Aiming = false
+        Config.Aiming = false
     end
 end)
 
@@ -42,7 +42,7 @@ dwRunService.RenderStepped:Connect(function()
     local dist = math.huge
     local closest_char = nil
 
-    if settings.Aiming then
+    if Config.Aiming then
 
         for i,v in next, dwEntities:GetChildren() do 
 
