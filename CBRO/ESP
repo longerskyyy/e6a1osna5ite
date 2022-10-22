@@ -143,9 +143,9 @@ function CreateEsp(Player)
             end
             if Config.TeamColorNames then
                 local Color = Player.TeamColor.Color
-				Names.Color = Color3.new(Color.R,Color.G,Color.B)
+				Name.Color = Color3.new(Color.R,Color.G,Color.B)
             else
-                Names.Color = Config.NamesColor
+                Name.Color = Config.NamesColor
             end
         else
             Box.Visible = false
