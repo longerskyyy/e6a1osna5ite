@@ -7,7 +7,7 @@ local LocalPlayer = Players.LocalPlayer
 local Holding = false
 
 local Config = {
-    AimbotEnabled = true,
+    AimbotEnabled = false,
     TeamCheck = false, -- If set to true then the script would only lock your aim at enemy team members.
     AimPart = "Head", -- Where the aimbot script would lock at.
     Sensitivity = 0, -- How many seconds it takes for the aimbot script to officially lock onto the target's aimpart.
@@ -17,7 +17,7 @@ local Config = {
     CircleTransparency = 0.7, -- Transparency of the circle.
     CircleRadius = 80, -- The radius of the circle / FOV.
     CircleFilled = false, -- Determines whether or not the circle is filled.
-    CircleVisible = true, -- Determines whether or not the circle is visible.
+    CircleVisible = false, -- Determines whether or not the circle is visible.
     CircleThickness = 0 -- The thickness of the circle.
 }
 
