@@ -22,14 +22,6 @@ local settings = {
 }
 
 local fovcircle = Drawing.new("Circle")
-fovcircle.Visible = settings.Aimbot_Draw_FOV
-fovcircle.Radius = settings.Aimbot_FOV_Radius
-fovcircle.Color = settings.Aimbot_FOV_Color
-fovcircle.Thickness = settings.Aimbot_FOV_Thickness
-fovcircle.NumSides = settings.Aimbot_FOV_Sides
-fovcircle.Transparency = settings.Aimbot_FOV_Transparency
-fovcircle.Filled = settings.Aimbot_FOV_Filled
-fovcircle.Position = Vector2.new(dwCamera.ViewportSize.X / 2, dwCamera.ViewportSize.Y / 2)
 
 dwUIS.InputBegan:Connect(function(i)
     if i.UserInputType == Enum.UserInputType.MouseButton2 and settings.Aimbot then
@@ -44,10 +36,6 @@ dwUIS.InputEnded:Connect(function(i)
 end)
 
 dwRunService.RenderStepped:Connect(function()
-    
-    local dist = math.huge
-    local closest_char = nil
-    
     fovcircle.Visible = settings.Aimbot_Draw_FOV
     fovcircle.Radius = settings.Aimbot_FOV_Radius
     fovcircle.Color = settings.Aimbot_FOV_Color
@@ -56,6 +44,9 @@ dwRunService.RenderStepped:Connect(function()
     fovcircle.Transparency = settings.Aimbot_FOV_Transparency
     fovcircle.Filled = settings.Aimbot_FOV_Filled
     fovcircle.Position = Vector2.new(dwUIS:GetMouseLocation().X, dwUIS:GetMouseLocation().Y)
+    
+    local dist = math.huge
+    local closest_char = nil
 
     if settings.Aiming then
 
