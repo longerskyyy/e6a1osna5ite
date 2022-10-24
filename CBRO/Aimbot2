@@ -98,4 +98,3 @@ dwRunService.RenderStepped:Connect(function()
         end
     end
 end)
-return settings
